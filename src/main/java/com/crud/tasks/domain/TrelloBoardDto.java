@@ -3,18 +3,16 @@ package com.crud.tasks.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 // Zamiast tego @Data
-@Data
+//@Data
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TrelloBoardDto {
 
@@ -27,3 +25,6 @@ public class TrelloBoardDto {
     @JsonProperty("lists")
     private List<TrelloListDto> lists;
 }
+
+
+
