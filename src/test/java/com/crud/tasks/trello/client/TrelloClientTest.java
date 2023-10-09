@@ -36,7 +36,7 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-        when(trelloConfig.getTrelloUsername()).thenReturn("test");
+        when(trelloConfig.getTrelloUser()).thenReturn("test");
 
 //        List<TrelloListDto> list = new ArrayList<>();
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
@@ -66,7 +66,7 @@ class TrelloClientTest {
 
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
 
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard("1", "Test task", "http://test.com", new Badges());
+        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard("1", "Test task", "http://test.com");
 
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
         // When
@@ -84,7 +84,7 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-        when(trelloConfig.getTrelloUsername()).thenReturn("test");
+        when(trelloConfig.getTrelloUser()).thenReturn("test");
 
         URI uri = new URI("http://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all");
 
