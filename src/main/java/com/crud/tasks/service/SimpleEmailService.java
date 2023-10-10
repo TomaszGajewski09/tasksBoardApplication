@@ -31,10 +31,14 @@ public class SimpleEmailService {
     private SimpleMailMessage createMailMassage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
+        log.info("Mail to: " + mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
+        log.info("Subject: " + mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        log.info("Text: " + mail.getMessage());
         Optional.ofNullable(mail.getToCc())
                 .ifPresent(mailMessage::setCc);
+        log.info("To cc: " + mail.getToCc());
         return mailMessage;
     }
 
