@@ -1,12 +1,8 @@
 package com.crud.tasks.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 public class TrelloCardDto {

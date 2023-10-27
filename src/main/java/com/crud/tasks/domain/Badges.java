@@ -1,9 +1,11 @@
 package com.crud.tasks.domain;
 
 
-import lombok.Data;
+import jakarta.transaction.Transactional;
+import lombok.*;
 
-@Data
+
+@Getter
 public class Badges {
     private int votes;
     AttachmentsByType attachmentsByType;

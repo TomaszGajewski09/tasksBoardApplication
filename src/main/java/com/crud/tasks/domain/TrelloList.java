@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 public class TrelloList {
     private String id;
