@@ -37,9 +37,9 @@ public class MailCreatorService {
         context.setVariable("admin_config", adminConfig);
         context.setVariable("preview_message", "The card was created");
         context.setVariable("goodbye_message", "Best regards,");
-        context.setVariable("company_name", "Comapny");
-        context.setVariable("show_button", false);
-        context.setVariable("is_friend", true);
+        context.setVariable("company_name", companyConfig.getCompanyName());
+        context.setVariable("show_button", true);
+        context.setVariable("is_friend", false);
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
