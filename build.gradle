@@ -37,6 +37,7 @@ dependencies {
 
 	//
 	runtimeOnly 'org.springframework.boot:spring-boot-starter-tomcat'
+	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 }
 
 

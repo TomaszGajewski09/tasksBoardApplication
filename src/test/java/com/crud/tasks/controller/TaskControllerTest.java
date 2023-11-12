@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -37,7 +38,7 @@ class TaskControllerTest {
     @MockBean
     private DbService service;
 
-    @MockBean
+    @SpyBean
     TaskMapper taskMapper;
 
     @Test
@@ -53,7 +54,7 @@ class TaskControllerTest {
                 new TaskDto(2l, "Test", "Test Content")
         );
         when(service.getAllTasks()).thenReturn(taskList);
-        when(taskMapper.mapToTaskDtoList(taskList)).thenReturn(taskDtoList);
+//        when(taskMapper.mapToTaskDtoList(taskList)).thenReturn(taskDtoList);
 //        when(taskMapper.mapToTaskDtoList(anyList())).thenReturn(taskDtoList);
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders
@@ -75,7 +76,7 @@ class TaskControllerTest {
         TaskDto taskDto = new TaskDto(1l, "Test", "Test Content");
 
         when(service.getTask(taskId)).thenReturn(task);
-        when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
+//        when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/v1/tasks/1")
@@ -103,12 +104,12 @@ class TaskControllerTest {
     @Test
     void shouldUpdateTask() throws Exception {
         // Given
-        Task task = new Task(1l, "Test", "Test Content");
-        TaskDto taskDto = new TaskDto(1l, "Test", "Test Content");
+        Task task = new Task(1l, "Test update", "Test Content");
+        TaskDto taskDto = new TaskDto(1l, "Test update", "Test Content");
 
-        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
-        when(service.saveTask(task)).thenReturn(task);
-        when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
+//        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
+        when(service.saveTask(any(Task.class))).thenReturn(task);
+//        when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
@@ -121,9 +122,9 @@ class TaskControllerTest {
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 // todo : problemy
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Test Content")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Test Content")))
                 ;
 
     }
@@ -134,7 +135,7 @@ class TaskControllerTest {
         Task task = new Task(1L, "Test", "Test Content");
         TaskDto taskDto = new TaskDto(1L, "Test", "Test Content");
 
-        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
+//        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
@@ -143,9 +144,10 @@ class TaskControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/v1/tasks")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isOk());
         // todo : problemy
-//        verify(service, Mockito.times(1)).saveTask(task);
+        verify(service, Mockito.times(1)).saveTask(any(Task.class));
     }
 }

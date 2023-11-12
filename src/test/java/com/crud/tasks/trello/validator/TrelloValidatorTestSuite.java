@@ -17,20 +17,6 @@ public class TrelloValidatorTestSuite {
 
     TrelloValidator validator = new TrelloValidator();
 
-    // todo: Pytanie: Jak przetestować odpowiednio logi metody validateCard?
-//    @Test
-//    void shouldLogInfoWhenNameContainsTest() {
-//        // Given
-//        TrelloCard trelloCard = new TrelloCard("test_card", "test", "top", "1");
-//        Logger logger = mock(Logger.class);
-//
-//        // When
-//        validator.validateCard(trelloCard);
-//
-//        // Then
-//        verify(logger).info("Someone is testing my application");
-//    }
-
     @Test
     void shouldFilterBoardsWithTestName() {
         // Given
