@@ -123,7 +123,7 @@ class TaskControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 // todo : problemy
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test update")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Test Content")))
                 ;
 
